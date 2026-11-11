@@ -1,5 +1,27 @@
 # @agent-native/toolkit
 
+## 0.228.0
+
+### Minor Changes
+
+- 8175f2d: Feature flag changes now say which rule they change. A flag can have a rule for every organization and an organization's own rule, which replaces it; `set-feature-flag` takes `scope: "org" | "global"`, only emails on the app's feature flag admin list can change the rule for every organization (from inside any organization), and `list-feature-flags` reports both rules, which one is in effect, and any rule that couldn't be read. A stored rule that can't be read now evaluates off everywhere, including when it is an organization's own rule over a global rule that is on, and `evaluateFeatureFlagStrict` throws on it. Enabling a flag for yourself adds to the rule in effect: it fails with a 409 on a rule that can't be read, and on an organization that follows the global rule, instead of starting that organization's own rule; turning a flag off or replacing its rules writes the whole rule either way. A rule the caller can't change is listed as `withheld`, with its mode, percentage, and how many emails and organizations it targets, but not which (`FeatureFlagRuleSummary`). The flag editor names where a change applies, shows when an organization's own rule overrides the rule for all organizations, and disables "Enable for me" where the server would refuse it. Breaking for TypeScript consumers: `FeatureFlagMetadata.rules` is now optional, absent when the rule in effect couldn't be read or is withheld, and `FeatureFlagStoredRule` has a new `withheld` state.
+- 78738f3: People can switch skills on or off for themselves, and organization admins can choose how each shared skill starts for people. Every skill in Settings → Skills has a switch that changes only the agent of the person who flips it. Admins mark each organization or Dispatch skill Recommended (on until someone switches it off, the default), Optional (off until someone switches it on) or Required (on for everyone, with a confirmation first). A Required skill wins over a same-named skill of anyone's own: their version is kept but unused, in the prompt and in explicit references. Admins see how many people switched each skill and how many keep their own version, never who. Switching or marking a Dispatch skill changes this app only. Nothing changes until someone acts. The new actions are `get-skill-choices`, `set-skill-switch`, `set-skill-mark` and `get-skill-choice-counts`; the client hook is `useSkillChoices` from `@agent-native/core/client/resources/use-skill-choices`.
+
+### Patch Changes
+
+- ade88da: An app can now draw the agent chat inside its own panel, and the Share button can show as plain text.
+- c8c081c: Keep a message sent from a closed agent panel when it opens a new chat, such as one sent from New automation. The panel cancelled it as meant for the chat it showed before, so the message never arrived and its text was lost.
+- da0d6d2: The Builder.io connect popover and first-run onboarding now say "15 free credits a day, up to 60 a month" instead of "60 monthly Agent Credits", so the daily limit is not a surprise. Every locale is updated.
+- 353cb43: Hide Create organization in the account menu when `ORG_CREATION=closed`, matching the no-organization screen and Team settings.
+- 40362af: In a collaborative editor, when someone else types in the paragraph you're typing in, your cursor stays after your own last letter instead of jumping back into your word, so your words no longer get mixed into theirs.
+- Release all public npm packages with a patch version bump.
+- 8930066: Match dropdown, context, and menubar menus to shadcn's Nova menu spacing: 4px menu padding with inset rows, separators with 4px above and below, and 6px item padding. The account menu now uses the standard menu rows instead of its own smaller text and labels.
+- bea9322: Require verified organization identity, scope background reads to the current organization, restrict shared MCP identity hints and recap agent tools, protect logout from cross-origin requests, confirm extension-submitted agent turns in the host UI, and let users approve exact outbound origins for custom keys without replacing their values.
+- b6222c2: Use compact split controls for resource sharing, and support link-only viewer surfaces and resource-specific general access controls.
+- bdefc2e: Refresh MCP client setup instructions and align MCP settings with the existing Settings hierarchy, using branded client rows, focused detail pages with named setup stages using the same shared numbered-steps renderer as Docs with borderless secondary circles for MCP and copyable connection details, connection actions and immediately copyable test prompts within setup steps, OAuth details where required, a compact setup-guide footer, Figma-matched spacing and setup copy, local-address guidance, copy feedback, accessible destination indicators, manual configuration on demand, shared shadcn surfaces, input groups, and error feedback, and server-backed connection badges and activity in the client list and details.
+- Updated dependencies
+  - @agent-native/agentkit@0.228.0
+
 ## 0.227.0
 
 ### Minor Changes
@@ -1636,11 +1658,5 @@
   its own handler, so a Radix `asChild` trigger built on `IconButton` — popover,
   dropdown menu, dialog — never opened at all. `IconButton` now merges `onClick`
   with `onPress` the same way `ActionButton` already did.
-
-## 0.16.4
-
-### Patch Changes
-
-- 95ea873: Allow editor-owned controls outside TipTap's contenteditable surface to protect active edits from stale collaboration snapshots, and preserve a valid selection when collaborative documents initially hydrate block-only nodes.
 
 For the full list of releases, see the [changelog archive](./changelog/archive/CHANGELOG.md).

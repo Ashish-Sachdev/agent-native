@@ -13,11 +13,13 @@ from the command menu (Cmd+K → "What's new") or from Settings.
 
 ### Improved
 
+- Share controls use a consistent compact layout.
 - More save failures now say why, such as being offline or lacking permission.
 - Automatic Builder setup now has bounded retries and a visible retry action when status is unavailable.
 
 ### Fixed
 
+- Edits that couldn't be saved right away are merged into the latest version of the screen instead of being discarded, and a Not saved indicator shows while a save is still being retried
 - Fixed designs being written twice when a prompt used attached photos or references.
 - Automatic Builder setup starts sooner and continues if you leave the page during setup.
 

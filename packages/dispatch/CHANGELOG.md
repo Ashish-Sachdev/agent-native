@@ -1,5 +1,24 @@
 # @agent-native/dispatch
 
+## 0.42.5
+
+### Patch Changes
+
+- Release all public npm packages with a patch version bump.
+- Updated dependencies [ade88da]
+- Updated dependencies [c8c081c]
+- Updated dependencies [da0d6d2]
+- Updated dependencies [353cb43]
+- Updated dependencies [40362af]
+- Updated dependencies [8175f2d]
+- Updated dependencies
+- Updated dependencies [8930066]
+- Updated dependencies [bea9322]
+- Updated dependencies [b6222c2]
+- Updated dependencies [78738f3]
+- Updated dependencies [bdefc2e]
+  - @agent-native/toolkit@0.228.0
+
 ## 0.42.4
 
 ### Patch Changes
@@ -1519,11 +1538,5 @@
 ### Patch Changes
 
 - a1d24db: Fix embedded workspace-app chat routes when the framework mount middleware strips the proxy prefix before dispatching the request.
-
-## 0.31.9
-
-### Patch Changes
-
-- 4ebc74f: Fix Clips, Forms, and Design apps sharing the same fallback icon in the Dispatch "Your apps" list.
 
 For the full list of releases, see the [changelog archive](./changelog/archive/CHANGELOG.md).

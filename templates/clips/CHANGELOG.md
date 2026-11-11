@@ -13,10 +13,29 @@ from the command menu (Cmd+K → "What's new") or from Settings.
 
 ### Improved
 
+- Sharing controls now match other apps, with password protection available for public links.
 - More save failures now say why, such as being offline or lacking permission.
 - Some new accounts now connect to Builder automatically during signup, with the Builder terms and privacy notice shown before signup.
 
+### Fixed
+
+- Mac app: opening Clips before Screen Recording is allowed no longer risks a macOS permission prompt; Clips asks when you start recording.
+- Rewind now starts when the screen is still, instead of timing out and falling back to slower capture.
+- Starting meeting notes from the notification now opens only the notes widget, the widget stays up until you stop notes, and hovering it reliably shows the live transcript.
+
+## 2026-11-07
+
+### Fixed
+
+- Inspect frames from large recordings stored in S3-compatible storage.
+- Restarting notes on a meeting no longer adds what they already saved a second time.
+- Shared meetings and clips now say a transcript couldn't be read when its saved lines are damaged, instead of showing no transcript, no speech, or lines with made-up speakers. On your own clip, a Regenerate transcript button sits under the message.
+
 ## 2026-11-06
+
+### Added
+
+- Agents working for a recording's owner can now get a link that downloads its video file for 10 minutes, including private recordings.
 
 ### Fixed
 
@@ -1459,21 +1478,5 @@ from the command menu (Cmd+K → "What's new") or from Settings.
 ### Security
 
 - Direct recording URLs now respect share-link and password access controls
-
-## 2026-07-14
-
-### Added
-
-- Rewind can keep recent screen context local, make it searchable on your Mac, and explicitly include the previous 30 seconds or 5 minutes in a Clip without starting another recorder
-
-### Improved
-
-- Desktop app prompts stay hidden after you download the installer
-- The Share dialog once again makes separate links for people and agents easy to find.
-
-### Fixed
-
-- Clips now distinguishes transcript previews from incomplete transcriptions and queues agent-triggered retries reliably.
-- Paused time no longer counts toward Chrome extension recording durations.
 
 For the full list of updates, see the [changelog folder](./changelog/).
